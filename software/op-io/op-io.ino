@@ -15,27 +15,27 @@ void setup() {
   // OMNI sets it to listen to all channels.. MIDI.begin(2) would set it 
   // to respond to notes on channel 2 only.
   MIDI.setHandleClock(myClock); // This is important!! This command
-//  MIDI.setHandleStart(myStart);
-//  MIDI.setHandleStop(myStop);
-//  MIDI.setHandleContinue(myContinue);
+  MIDI.setHandleStart(myStart);
+  MIDI.setHandleStop(myStop);
+  MIDI.setHandleContinue(myContinue);
 
   Serial.println("Set up MIDI listeners");
 
   // USB MIDI stuff
-//  usbMIDI.setHandleStop(myUSBStop);
-//  usbMIDI.setHandleStart(myUSBStart);
-//  usbMIDI.setHandleContinue(myUSBContinue);
-//  usbMIDI.setHandleClock(myUSBClock);
+  usbMIDI.setHandleStop(myUSBStop);
+  usbMIDI.setHandleStart(myUSBStart);
+  usbMIDI.setHandleContinue(myUSBContinue);
+  usbMIDI.setHandleClock(myUSBClock);
 }
 
 void loop() { // Main loop
   MIDI.read(); // Continuously check if Midi data has been received.
-//  usbMIDI.read(); // Continuously check if MIDI data on USB
+  usbMIDI.read(); // Continuously check if MIDI data on USB
 }
 
 void myClock() {
-  Serial.println("Clock");
-//  usbMIDI.sendRealTime(usbMIDI.Clock);
+//  Serial.println("Clock");
+  usbMIDI.sendRealTime(usbMIDI.Clock);
 }
 
 void myUSBClock() {
